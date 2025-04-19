@@ -1,5 +1,7 @@
 package com.example.teaching.controller;
 
+import com.example.teaching.common.Result;
+import com.example.teaching.common.ResultUtils;
 import com.example.teaching.entity.Teacher;
 import com.example.teaching.service.TeacherService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,29 +20,31 @@ public class TeacherController {
     private TeacherService teacherService;
 
     @GetMapping
-    public List<Teacher> getAllTeachers() {
-        return teacherService.getAllTeachers();
+    public Result<List<Teacher>> getAllTeachers() {
+        return ResultUtils.success(teacherService.getAllTeachers());
     }
 
     @GetMapping("/{id}")
-    public Teacher getTeacherById(@PathVariable Long id) {
-        return teacherService.getTeacherById(id);
+    public Result<Teacher> getTeacherById(@PathVariable Long id) {
+        return ResultUtils.success(teacherService.getTeacherById(id).orElse(null));
     }
 
     @PostMapping
-    public Teacher addTeacher(@RequestBody Teacher teacher) {
-        return teacherService.addTeacher(teacher);
+    public Result<Teacher> addTeacher(@RequestBody Teacher teacher) {
+        return ResultUtils.success(teacherService.addTeacher(teacher));
     }
 
     @PutMapping("/{id}")
-    public Teacher updateTeacher(@PathVariable Long id, @RequestBody Teacher teacher) {
+    public Result<Teacher> updateTeacher(@PathVariable Long id, @RequestBody Teacher teacher) {
         teacher.setId(id);
-        return teacherService.updateTeacher(teacher);
+        return ResultUtils.success(teacherService.updateTeacher(teacher).orElse(null));
     }
 
     @DeleteMapping("/{id}")
-    public void deleteTeacher(@PathVariable Long id) {
+    public Result<Object> deleteTeacher(@PathVariable Long id) {
         teacherService.deleteTeacher(id);
+        return ResultUtils.success(null);
     }
+
 
 }
