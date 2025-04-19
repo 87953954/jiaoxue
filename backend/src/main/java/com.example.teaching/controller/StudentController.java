@@ -1,6 +1,8 @@
 package com.example.teaching.controller;
 
+import com.example.teaching.common.Result;
 import com.example.teaching.entity.Student;
+import com.example.teaching.common.ResultUtils;
 import com.example.teaching.service.StudentService;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,20 +26,59 @@ public class StudentController {
     private StudentService studentService;
 
     @GetMapping
-    public List<Student> getAllStudents() {
-        return studentService.getAllStudents();
+    public Result<List<Student>> getAllStudents() {
+        // 获取所有学生信息
+        List<Student> allStudents = studentService.getAllStudents();
+        return ResultUtils.success(allStudents);
     }
 
+    /**
+     * 根据ID获取学生
+     *
+     * @param id 学生ID
+     * @return 包含学生信息的Result对象
+     */
     @GetMapping("/{id}")
-    public Optional<Student> getStudentById(@PathVariable Long id) {
-        return studentService.getStudentById(id);
+    public Result<Student> getStudentById(@PathVariable Long id) {
+        Optional<Student> student = studentService.getStudentById(id);
+        return student.map(ResultUtils::success).orElseGet(() -> ResultUtils.success(null));
     }
+    /**
+     * 添加学生
+     *
+     * @param student 学生信息
+     * @return 包含添加后的学生信息的Result对象
+     */
     @PostMapping
-    public Student addStudent(@RequestBody Student student) {return studentService.addStudent(student);}
+    public Result<Student> addStudent(@RequestBody Student student) {
+        Student savedStudent = studentService.addStudent(student);
+        return ResultUtils.success(savedStudent);
+    }
+
+    /**
+     * 修改学生信息
+     *
+     * @param student 学生信息
+     * @return 包含修改后的学生信息的Result对象
+     */
     @PutMapping("/{id}")
-    public Optional<Student> updateStudent(@RequestBody Student student) {return studentService.updateStudent(student);}
+    public Result<Student> updateStudent(@PathVariable Long id, @RequestBody Student student) {
+        student.setId(id);
+        Optional<Student> updatedStudent = studentService.updateStudent(student);
+        return updatedStudent.map(ResultUtils::success).orElseGet(() -> ResultUtils.success(null));
+    }
+    /**
+     * 删除学生
+     *
+     * @param id 学生ID
+     * @return 包含操作结果信息的Result对象
+     */
     @DeleteMapping("/{id}")
-    public void deleteStudent(@PathVariable Long id) {studentService.deleteStudent(id);}
+    public Result<String> deleteStudent(@PathVariable Long id) {
+        studentService.deleteStudent(id);
+        return ResultUtils.success(null);
+    }
+
 
     }
 }
