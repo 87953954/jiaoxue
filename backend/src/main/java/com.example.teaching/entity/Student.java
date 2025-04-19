@@ -14,6 +14,18 @@ public class Student {
     private String studentNo;
     private String classNo;
 
+    public Student() {
+    }
+
+    public Student(Long id, String name, String studentNo, String classNo) {
+        this.id = id;
+        this.name = name;
+        this.studentNo = studentNo;
+        this.classNo = classNo;
+    }
+
+
+
     public Long getId() {
         return id;
     }

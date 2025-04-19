@@ -15,6 +15,19 @@ public class Enrollment {
     private String time;
     private String address;
 
+    //无参构造函数
+    public Enrollment() {
+    }
+
+    //全参构造函数
+    public Enrollment(Long id, Long courseId, Long studentId, String time, String address) {
+        this.id = id;
+        this.courseId = courseId;
+        this.studentId = studentId;
+        this.time = time;
+        this.address = address;
+    }
+
     public Long getId() {
         return id;
     }

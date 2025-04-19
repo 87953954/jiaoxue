@@ -1,9 +1,9 @@
 package com.example.teaching.entity;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
 import java.time.LocalDateTime;
 
 @Entity
@@ -14,6 +14,17 @@ public class Announcement {
     private String content;
     private LocalDateTime publishTime;
     private String classNo;
+    
+    public Announcement(){
+        
+    }
+
+    public Announcement(Long id, String content, LocalDateTime publishTime, String classNo) {
+        this.id = id;
+        this.content = content;
+        this.publishTime = publishTime;
+        this.classNo = classNo;
+    }
 
     public Long getId() {
         return id;

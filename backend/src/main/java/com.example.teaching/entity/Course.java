@@ -13,6 +13,17 @@ public class Course {
     private String name;
     private Long teacherId;
 
+    // 无参构造函数
+    public Course() {
+    }
+
+    // 全参构造函数
+    public Course(Long id, String name, Long teacherId) {
+        this.id = id;
+        this.name = name;
+        this.teacherId = teacherId;
+    }
+
     public Long getId() {
         return id;
     }
