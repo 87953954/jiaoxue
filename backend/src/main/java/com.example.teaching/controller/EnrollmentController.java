@@ -26,7 +26,7 @@ public class EnrollmentController {
      */
     @GetMapping
     public Result<List<Enrollment>> getAllEnrollments() {
-        List<Enrollment> allEnrollments = enrollmentService.getAllEnrollment();
+        List<Enrollment> allEnrollments = enrollmentService.getAllEnrollments();
         return ResultUtils.success(allEnrollments);
     }
     /**
@@ -70,5 +70,4 @@ public class EnrollmentController {
         Optional<Enrollment> updatedEnrollment = enrollmentService.updateEnrollment(enrollment);
         return updatedEnrollment.map(ResultUtils::success).orElseGet(() -> ResultUtils.success(null));
     }
-}
 }

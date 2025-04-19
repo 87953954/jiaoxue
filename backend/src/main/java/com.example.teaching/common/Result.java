@@ -1,14 +1,14 @@
 package com.example.teaching.common;
 
-public class Result {
+public class Result<T> {
     private Integer code;
     private String message;
-    private Object data;
+    private T data;
 
     public Result() {
     }
 
-    public Result(Integer code, String message, Object data) {
+    public Result(Integer code, String message, T data) {
         this.code = code;
         this.message = message;
         this.data = data;
@@ -34,7 +34,7 @@ public class Result {
         return data;
     }
 
-    public void setData(Object data) {
+    public void setData(T data) {
         this.data = data;
     }
 }
