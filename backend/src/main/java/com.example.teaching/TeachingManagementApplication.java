@@ -41,8 +41,8 @@ public class TeachingManagementApplication {
             courseRepository.save(new Course(null, "Test Course", 1L));
 
             // Add some test enrollments
-            enrollmentRepository.save(new Enrollment(null, 1L, 1L, LocalDateTime.now(), "Room 101"));
-            enrollmentRepository.save(new Enrollment(null, 2L, 2L, LocalDateTime.now(), "Room 102"));
+            enrollmentRepository.save(new Enrollment(null, 1L, 1L, LocalDateTime.now().toString(), "Room 101"));
+            enrollmentRepository.save(new Enrollment(null, 2L, 2L, LocalDateTime.now().toString(), "Room 102"));
             announcementRepository.save(new Announcement(null,"this is a test", LocalDateTime.now(),"Class A"));
         };
     }
