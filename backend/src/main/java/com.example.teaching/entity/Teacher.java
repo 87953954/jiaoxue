@@ -1,9 +1,10 @@
 package com.example.teaching.entity;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+
 
 @Entity
 public class Teacher {
@@ -15,6 +16,17 @@ public class Teacher {
     private String name;
 
     private String teacherNo;
+
+    // 无参构造函数
+    public Teacher() {
+    }
+
+    // 全参构造函数
+    public Teacher(Long id, String name, String teacherNo) {
+        this.id = id;
+        this.name = name;
+        this.teacherNo = teacherNo;
+    }
 
     // Getters and setters
     public Long getId() {
