@@ -30,24 +30,15 @@ public class TeachingManagementApplication {
         EnrollmentRepository enrollmentRepository,
         AnnouncementRepository announcementRepository) {
         return args -> {
-            // Clear existing data
-            announcementRepository.deleteAll();
-            enrollmentRepository.deleteAll();
-            courseRepository.deleteAll();
-            studentRepository.deleteAll();
-            teacherRepository.deleteAll();
 
-            // Add some test teachers
-            teacherRepository.save(new Teacher(null, "Teacher 1", "T001"));
-            teacherRepository.save(new Teacher(null, "Teacher 2", "T002"));
+            // Add one test teacher
+            teacherRepository.save(new Teacher(null, "Test Teacher", "T001"));
 
-            // Add some test students
-            studentRepository.save(new Student(null, "Student 1", "S001", "Class A"));
-            studentRepository.save(new Student(null, "Student 2", "S002", "Class B"));
+            // Add one test student
+            studentRepository.save(new Student(null, "Test Student", "S001", "Class A"));
 
-            // Add some test courses
-            courseRepository.save(new Course(null, "Math", 1L));
-            courseRepository.save(new Course(null, "English", 2L));
+            // Add one test course
+            courseRepository.save(new Course(null, "Test Course", 1L));
 
             // Add some test enrollments
             enrollmentRepository.save(new Enrollment(null, 1L, 1L, LocalDateTime.now(), "Room 101"));
