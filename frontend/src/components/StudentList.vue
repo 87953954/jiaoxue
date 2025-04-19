@@ -1,36 +1,43 @@
 <template>
   <div>
     <h2>Student List</h2>
-    <el-table :data="students" style="width: 100%">
-      <el-table-column prop="studentNo" label="Student No" width="180" />
-      <el-table-column prop="name" label="Name" width="180" />
-      <el-table-column prop="classNo" label="Class No" />
+    <el-table :data="students" style="width: 100%" v-loading="loading">
+      <el-table-column prop="name" label="Name" />
+      <el-table-column prop="studentNo" label="Student No" />
     </el-table>
   </div>
 </template>
 
 <script>
 import axios from 'axios';
-import { ElTable, ElTableColumn } from 'element-plus';
+import { ElMessage } from 'element-plus';
 
 export default {
-  components: {
-    ElTable,
-    ElTableColumn,
-  },
+  name: 'StudentList',
   data() {
     return {
       students: [],
+      loading: true,
     };
   },
   mounted() {
-    axios.get('/api/students')
-      .then(response => {
-        this.students = response.data;
-      })
-      .catch(error => {
-        console.error('Error fetching students:', error);
-      });
+    this.fetchStudents();
+  },
+  methods: {
+    async fetchStudents() {
+      try {
+        const response = await axios.get('/api/students');
+        if(response.data.code == 200){
+            this.students = response.data.data;
+        }else {
+          ElMessage.error('Failed to fetch students')
+        }
+      } catch (error) {
+        ElMessage.error('Failed to fetch students');
+      } finally {
+        this.loading = false;
+      }
+    },
   },
 };
 </script>
