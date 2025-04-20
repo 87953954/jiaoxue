@@ -37,6 +37,7 @@
         } finally {
           this.loading = false;
         }
-      },
-    };
+      }
+    }
+  }
 </script>
