@@ -58,6 +58,11 @@ public class Attendance {
     @Column(name = "fourth_check_in")
     private Timestamp fourthCheckIn;
     /**
+     * 签退时间
+     */
+    @Column(name = "check_out")
+    private Timestamp checkOutTime;
+    /**
      * 是否合格
      */
     @Column(name = "is_qualified")
