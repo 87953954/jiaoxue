@@ -138,10 +138,6 @@ public class UserController {
      /**
      * 忘记用户密码
      * @param user 包含用户名和密码的用户对象
-     * @ApiOperation: swagger注释
-     * @RequestBody: 将请求体转为实体类
-     * @Valid：用于验证数据
-     * @return 更新成功的用户对象，如果用户不存在则返回 404 Not Found 错误
      */
     @PutMapping("/forgetPassword")
     public ResponseEntity<User> forgetPassword(@RequestBody User user) {

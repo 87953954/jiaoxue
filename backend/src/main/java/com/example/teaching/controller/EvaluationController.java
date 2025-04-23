@@ -23,12 +23,11 @@ import java.util.List;
 public class EvaluationController {
     @Autowired
     private EvaluationService evaluationService;
-    @Operation(summary = "获取所有评价")
     /**
      * 获取所有评价记录
-     *
      * @return 评价记录列表
      */
+    @Operation(summary = "获取所有评价")
     @GetMapping
     public List<Evaluation> getAllEvaluations() {
         return evaluationService.findAll();
@@ -40,11 +39,13 @@ public class EvaluationController {
         Evaluation createdEvaluation = evaluationService.createEvaluation(evaluation);
         return new ResponseEntity<>(createdEvaluation, HttpStatus.CREATED);
     }
+
     /**
      * 根据ID获取评价记录
-     *
-     * @param id 评价记录ID
+     * @param id  评价记录ID
      * @return 找到的评价记录
+     */
+    /**
      */
 
     @Operation(summary = "根据ID获取评价")
@@ -61,10 +62,10 @@ public class EvaluationController {
 
     /**
      * 更新评价记录信息
-     *
      * @param evaluation 要更新的评价记录对象
      * @return 更新后的评价记录对象
      */
+
     @Operation(summary = "更新评价信息")
     @PutMapping
     public ResponseEntity<Evaluation> updateEvaluation(@RequestBody Evaluation evaluation) {
@@ -73,8 +74,7 @@ public class EvaluationController {
     }
     /**
      * 根据ID删除评价记录
-     *
-     * @param id 要删除的评价记录ID
+     * @param id  要删除的评价记录ID
      * @return 操作结果
      */
     @Operation(summary = "根据ID删除评价")
@@ -83,11 +83,9 @@ public class EvaluationController {
         evaluationService.deleteEvaluationById(id);
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
-
     /**
      * 根据学生ID查找评价记录
-     *
-     * @param studentId 学生ID
+     * @param studentId  学生ID
      * @return 找到的评价记录列表
      */
     @Operation(summary = "根据学生ID获取评价")
@@ -98,8 +96,7 @@ public class EvaluationController {
 
     /**
      * 根据课程ID查找评价记录
-     *
-     * @param courseId 课程ID
+     * @param courseId  课程ID
      * @return 找到的评价记录列表
      */
     @Operation(summary = "根据课程ID获取评价")
