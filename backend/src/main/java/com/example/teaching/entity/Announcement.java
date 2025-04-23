@@ -29,6 +29,9 @@ public class Announcement {
         this.title = title;
     }
 
+    public Announcement(Object o, String thisIsATest, LocalDateTime now, String classA) {
+    }
+
     public Long getId() {
         return id;
     }
