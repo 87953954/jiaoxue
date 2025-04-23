@@ -6,7 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-import java.util.Optional;
+
 
 /**
  * UserService 类
@@ -89,19 +89,12 @@ public class UserService {
      * @param password 密码
      * @return 登录成功的用户对象，如果用户名或密码错误则返回 null
      */
-    public User login(String username, String password) {
-        // 根据用户名查找用户
-        Optional<User> optionalUser = Optional.ofNullable(userRepository.findByUsername(username));
-
-        // 检查用户是否存在且密码是否匹配
-        return optionalUser.filter(user -> user.getPassword().equals(password)).orElse(null);
+   public User login(String username, String password) {
+        return userRepository.findByUsernameAndPassword(username, password);
     }
 
-    public User getUserByUsername(String username) {
-        return userRepository.findByUsername(username);
-    }
-
-    /**
+     /**
+     *
      * 更新用户密码
      *
      * @param username    用户名
@@ -109,11 +102,11 @@ public class UserService {
      * @return 更新密码后的用户对象，如果用户不存在则返回 null
      */
     public User updatePassword(String username, String newPassword) {
-        Optional<User> optionalUser = Optional.ofNullable(userRepository.findByUsername(username));
-        if (optionalUser.isPresent()) {
-            User user = optionalUser.get();
-            user.setPassword(newPassword);
-            return userRepository.save(user);
+        User user = userRepository.findByUsername(username);
+        if (user != null) {
+             user.setPassword(newPassword);
+            return userRepository.save(user);   
+            
         }
         return null;
     }

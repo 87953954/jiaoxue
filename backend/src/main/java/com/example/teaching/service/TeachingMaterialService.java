@@ -1,5 +1,5 @@
 package com.example.teaching.service;
-
+/**
 import com.example.teaching.entity.TeachingMaterial;
 import com.example.teaching.repository.TeachingMaterialRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Optional;
+*/
 
 /**
  * TeachingMaterialService 类
@@ -15,6 +16,7 @@ import java.util.Optional;
 @Service
 public class TeachingMaterialService {
     @Autowired
+    /**
     private TeachingMaterialRepository teachingMaterialRepository;
 
     /**
@@ -78,4 +80,5 @@ public class TeachingMaterialService {
     public List<TeachingMaterial> getTeachingMaterialsByTeacherId(Long teacherId) {
         return teachingMaterialRepository.findByTeacherId(teacherId);
     }
+    */
 }

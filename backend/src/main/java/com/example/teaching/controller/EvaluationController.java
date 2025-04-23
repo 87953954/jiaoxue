@@ -1,5 +1,5 @@
 package com.example.teaching.controller;
-
+import io.swagger.annotations.Api;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import com.example.teaching.entity.Evaluation;
@@ -16,7 +16,7 @@ import java.util.List;
  * EvaluationController 类
  * 该类负责处理与 Evaluation 实体相关的 HTTP 请求。
  * 提供了评价管理相关的 API 接口。
- */
+ */@Api(tags = "评价管理")
 @Api(tags = "评价管理")
 @RestController
 @RequestMapping("/api/evaluations")
