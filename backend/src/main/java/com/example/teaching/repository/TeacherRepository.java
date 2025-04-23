@@ -41,5 +41,5 @@ public interface TeacherRepository extends JpaRepository<Teacher, Long> {
      * @return 如果存在则返回 true，否则返回 false
      */
     boolean existsByPhone(String phone);
-}
+
 }
