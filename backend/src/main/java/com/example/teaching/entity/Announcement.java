@@ -15,16 +15,18 @@ public class Announcement {
     private String content;
     private LocalDateTime publishTime;
     private String classNo;
+    private String title;
     
     public Announcement(){
         
     }
 
-    public Announcement(Long id, String content, LocalDateTime publishTime, String classNo) {
+    public Announcement(Long id, String content, LocalDateTime publishTime, String classNo, String title) {
         this.id = id;
         this.content = content;
         this.publishTime = publishTime;
         this.classNo = classNo;
+        this.title = title;
     }
 
     public Long getId() {
@@ -57,5 +59,13 @@ public class Announcement {
 
     public void setClassNo(String classNo) {
         this.classNo = classNo;
+    }
+    
+    public String getTitle() {
+        return title;
+    }
+
+    public void setTitle(String title) {
+        this.title = title;
     }
 }
