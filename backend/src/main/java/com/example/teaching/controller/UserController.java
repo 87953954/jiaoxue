@@ -8,8 +8,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.http.ResponseEntity;
 import java.util.List;
-import io.swagger.annotations.Api;
-import io.swagger.annotations.ApiOperation;
+import io.swagger.v3.oas.annotations.tags.Tag;
+import io.swagger.v3.oas.annotations.Operation;
 
 /**
  * UserController 类
@@ -17,7 +17,7 @@ import io.swagger.annotations.ApiOperation;
  * 使用了 Spring MVC 的 @RestController 注解，表示这是一个 RESTful 风格的控制器。
  * 使用了 Swagger 的 @Api 注解，用于在 Swagger 文档中对该控制器进行分组。
  */
-@Api(tags = "用户管理")
+@Tag(name = "用户管理")
 @RestController
 @RequestMapping("/api/users")
 public class UserController {
@@ -92,7 +92,7 @@ public class UserController {
      * @param user 要注册的用户对象
      * @return 注册成功的用户对象
      */
-    @ApiOperation(value = "用户注册", notes = "注册一个新的用户")
+    @Operation(summary = "用户注册", description = "注册一个新的用户")
     @PostMapping("/register")
     public ResponseEntity<User> registerUser(@RequestBody User user) {
         User registeredUser = userService.registerUser(user);
@@ -104,7 +104,7 @@ public class UserController {
      * @param user 包含用户名和密码的用户对象
      * @return 登录成功的用户对象，如果登录失败则返回 401 Unauthorized 错误
      */
-    @ApiOperation(value = "用户登录", notes = "用户登录")
+    @Operation(summary = "用户登录", description = "用户登录")
     @PostMapping("/login")
     public ResponseEntity<User> login(@RequestBody User user) {
         User loggedInUser = userService.login(user.getUsername(), user.getPassword());
@@ -117,7 +117,7 @@ public class UserController {
      * @param username 要查找的用户名
      * @return 找到的用户对象，如果不存在则返回 404 Not Found 错误
      */
-    @ApiOperation(value = "根据用户名获取用户", notes = "根据用户名获取用户信息")
+    @Operation(summary = "根据用户名获取用户", description = "根据用户名获取用户信息")
     @GetMapping("/getByUsername/{username}")
     public ResponseEntity<User> getUserByUsername(@PathVariable String username) {
         User user = userService.getUserByUsername(username);
@@ -129,7 +129,7 @@ public class UserController {
      * @param user 包含用户名和密码的用户对象
      * @return 更新成功的用户对象，如果用户不存在则返回 404 Not Found 错误
      */
-    @ApiOperation(value = "更新用户密码", notes = "更新用户密码")
+    @Operation(summary = "更新用户密码", description = "更新用户密码")
     @PutMapping("/updatePassword")
     public ResponseEntity<User> updatePassword(@RequestBody User user) {
         User updatedUser = userService.updatePassword(user.getUsername(),user.getPassword());
