@@ -4,7 +4,7 @@ import com.example.teaching.entity.Attendance;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
-import java.time.LocalDateTime;
+import java.sql.Timestamp;
 
 import java.util.List;
 
@@ -42,12 +42,33 @@ public interface AttendanceRepository extends JpaRepository<Attendance, Long> {
      * @param endTime 结束时间
      * @return 找到的考勤记录列表
      */
-    List<Attendance> findByCheckInTimeBetween(LocalDateTime startTime, LocalDateTime endTime);
+    List<Attendance> findByFirstCheckInBetween(Timestamp startTime, Timestamp endTime);
+    /**
+     * 查找在指定时间范围内第二次签到的考勤记录
+     * @param startTime 开始时间
+     * @param endTime 结束时间
+     * @return 找到的考勤记录列表
+     */
+    List<Attendance> findBySecondCheckInBetween(Timestamp startTime, Timestamp endTime);
+        /**
+     * 查找在指定时间范围内第三次签到的考勤记录
+     * @param startTime 开始时间
+     * @param endTime 结束时间
+     * @return 找到的考勤记录列表
+     */
+    List<Attendance> findByThirdCheckInBetween(Timestamp startTime, Timestamp endTime);
+        /**
+     * 查找在指定时间范围内第四次签到的考勤记录
+     * @param startTime 开始时间
+     * @param endTime 结束时间
+     * @return 找到的考勤记录列表
+     */
+    List<Attendance> findByFourthCheckInBetween(Timestamp startTime, Timestamp endTime);
     /**
      * 查找在指定时间范围内签退的考勤记录
      * @param startTime 开始时间
      * @param endTime 结束时间
      * @return 找到的考勤记录列表
      */
-    List<Attendance> findByCheckOutTimeBetween(LocalDateTime startTime, LocalDateTime endTime);
+    List<Attendance> findByCheckOutTimeBetween(Timestamp startTime, Timestamp endTime);
 }
