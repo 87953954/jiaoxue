@@ -1,69 +1,44 @@
 package com.example.teaching.entity;
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Size;
+import lombok.Data;
 
+@Data
 @Entity
 @Table(name = "evaluation")
 public class Evaluation {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+    @NotNull(message = "Student ID is required")
     @Column(name = "student_id")
     private Long studentId;
+    @NotNull(message = "Course ID is required")
     @Column(name = "course_id")
     private Long courseId;
+    @NotNull(message = "Teacher ID is required")
     @Column(name = "teacher_id")
     private Long teacherId;
+    @NotNull(message = "Rating is required")
     @Column(name = "score")
     private Integer score;
+    @NotBlank(message = "Comment is required")
+    @Size(max = 200, message = "Comment cannot be longer than 200 characters")
     @Column(name = "comment")
     private String comment;
 
-    public Long getId() {
-        return id;
-    }
 
-    public void setId(Long id) {
-        this.id = id;
-    }
 
-    public Long getStudentId() {
-        return studentId;
-    }
 
-    public void setStudentId(Long studentId) {
-        this.studentId = studentId;
-    }
 
-    public Long getCourseId() {
-        return courseId;
-    }
 
-    public void setCourseId(Long courseId) {
-        this.courseId = courseId;
-    }
 
-    public Long getTeacherId() {
-        return teacherId;
-    }
 
-    public void setTeacherId(Long teacherId) {
-        this.teacherId = teacherId;
-    }
 
-    public Integer getScore() {
-        return score;
-    }
 
-    public void setScore(Integer score) {
-        this.score = score;
-    }
 
-    public String getComment() {
-        return comment;
-    }
 
-    public void setComment(String comment) {
-        this.comment = comment;
-    }
 }
