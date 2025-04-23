@@ -94,7 +94,7 @@ public class CourseController {
     @ApiOperation("根据教师ID获取课程")
     @GetMapping("/byTeacher/{teacherId}")
     public List<Course> getCoursesByTeacherId(@PathVariable Long teacherId) {
-        return courseService.getCoursesByTeacherId(teacherId);
+        return courseService.getCourseByTeacherId(teacherId);
     }
     
     /**
@@ -105,6 +105,6 @@ public class CourseController {
     @ApiOperation("根据学生ID获取课程")
     @GetMapping("/byStudent/{studentId}")
     public List<Course> getCoursesByStudentId(@PathVariable Long studentId) {
-        return courseService.getCoursesByStudentId(studentId);
+        return courseService.getCourseByStudentId(studentId);
     }
 }
