@@ -1,20 +1,13 @@
 package com.example.teaching;
 
-import com.example.teaching.entity.Announcement;
-import com.example.teaching.entity.Course;
-import com.example.teaching.entity.Enrollment;
-import com.example.teaching.entity.Student;
-import com.example.teaching.entity.Teacher;
-import com.example.teaching.repository.AnnouncementRepository;
-import com.example.teaching.repository.CourseRepository;
-import com.example.teaching.repository.EnrollmentRepository;
-import com.example.teaching.repository.StudentRepository;
-import com.example.teaching.repository.TeacherRepository;
-import java.time.LocalDateTime;
+import com.example.teaching.entity.*;
+import com.example.teaching.repository.*;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
+
+import java.time.LocalDateTime;
 
 @SpringBootApplication
 public class TeachingManagementApplication {

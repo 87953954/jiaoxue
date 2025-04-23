@@ -5,11 +5,8 @@ import com.example.teaching.common.ResultUtils;
 import com.example.teaching.entity.Teacher;
 import com.example.teaching.service.TeacherService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.*;
 
-
-import jakarta.annotation.Resource;
 import java.util.List;
 
 @RestController
