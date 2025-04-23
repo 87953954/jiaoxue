@@ -91,7 +91,7 @@ public class UserService {
      */
     public User login(String username, String password) {
         // 根据用户名查找用户
-        Optional<User> optionalUser = userRepository.findByUsername(username);
+        Optional<User> optionalUser = Optional.ofNullable(userRepository.findByUsername(username));
 
         // 检查用户是否存在且密码是否匹配
         return optionalUser.filter(user -> user.getPassword().equals(password)).orElse(null);
@@ -109,7 +109,7 @@ public class UserService {
      * @return 更新密码后的用户对象，如果用户不存在则返回 null
      */
     public User updatePassword(String username, String newPassword) {
-        Optional<User> optionalUser = userRepository.findByUsername(username);
+        Optional<User> optionalUser = Optional.ofNullable(userRepository.findByUsername(username));
         if (optionalUser.isPresent()) {
             User user = optionalUser.get();
             user.setPassword(newPassword);
@@ -130,4 +130,3 @@ public class UserService {
     }
 }
 
-}
