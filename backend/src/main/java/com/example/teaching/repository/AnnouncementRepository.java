@@ -11,5 +11,5 @@ public interface AnnouncementRepository extends JpaRepository<Announcement, Long
     List<Announcement> findByTitle(String title);
     List<Announcement> findByContent(String content);
     List<Announcement> findByPublishTimeBetween(LocalDateTime startTime, LocalDateTime endTime);
-}
+
 }
