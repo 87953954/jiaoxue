@@ -70,7 +70,7 @@ public class CourseService {
      */
     public List<Course> getCourseByTeacherId(Long teacherId) {
         List<Course> courses = courseRepository.findAll();
-        List<Course> teacherCourses = courses.stream().filter(course -> course.getTeacherId().equals(teacherId)).collect(Collectors.toList());
+        List<Course> teacherCourses = courses.stream().filter(course -> course.getTeacher().getId().equals(teacherId)).collect(Collectors.toList());
         if (teacherCourses.isEmpty()) {
             return new ArrayList<>();
         }
