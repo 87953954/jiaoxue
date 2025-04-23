@@ -120,7 +120,7 @@ public class UserController {
     @ApiOperation(value = "根据用户名获取用户", notes = "根据用户名获取用户信息")
     @GetMapping("/getByUsername/{username}")
     public ResponseEntity<User> getUserByUsername(@PathVariable String username) {
-        User user = userService.findUserByUsername(username);
+        User user = userService.getUserByUsername(username);
         return new ResponseEntity<>(user, user != null ? HttpStatus.OK : HttpStatus.NOT_FOUND);
     }
 

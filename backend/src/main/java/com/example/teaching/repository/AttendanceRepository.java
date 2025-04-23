@@ -4,6 +4,7 @@ import com.example.teaching.entity.Attendance;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
+import java.time.LocalDateTime;
 
 import java.util.List;
 
@@ -26,4 +27,27 @@ public interface AttendanceRepository extends JpaRepository<Attendance, Long> {
      * @return 找到的考勤记录列表
      */
     List<Attendance> findByCourseId(Long courseId);
+
+    /**
+     * 根据学生ID和课程ID查找考勤记录
+     * @param studentId 学生ID
+     * @param courseId 课程ID
+     * @return 找到的考勤记录列表
+     */
+    List<Attendance> findByStudentIdAndCourseId(Long studentId, Long courseId);
+
+    /**
+     * 查找在指定时间范围内签到的考勤记录
+     * @param startTime 开始时间
+     * @param endTime 结束时间
+     * @return 找到的考勤记录列表
+     */
+    List<Attendance> findByCheckInTimeBetween(LocalDateTime startTime, LocalDateTime endTime);
+    /**
+     * 查找在指定时间范围内签退的考勤记录
+     * @param startTime 开始时间
+     * @param endTime 结束时间
+     * @return 找到的考勤记录列表
+     */
+    List<Attendance> findByCheckOutTimeBetween(LocalDateTime startTime, LocalDateTime endTime);
 }

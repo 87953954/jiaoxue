@@ -93,6 +93,16 @@ public class UserService {
         return userRepository.findByUsernameAndPassword(username, password);
     }
 
+    /**
+     * 根据用户名获取用户
+     *
+     * @param username 用户名
+     * @return 找到的用户对象，如果不存在则返回 null
+     */
+    public User getUserByUsername(String username) {
+        return userRepository.findByUsername(username);
+    }
+
      /**
      *
      * 更新用户密码
