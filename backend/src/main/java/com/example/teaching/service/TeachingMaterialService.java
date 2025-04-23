@@ -1,13 +1,12 @@
 package com.example.teaching.service;
-/**
+
 import com.example.teaching.entity.TeachingMaterial;
+import java.util.List;
+import java.util.Optional;
 import com.example.teaching.repository.TeachingMaterialRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.List;
-import java.util.Optional;
-*/
 
 /**
  * TeachingMaterialService 类
@@ -15,9 +14,9 @@ import java.util.Optional;
  */
 @Service
 public class TeachingMaterialService {
-    @Autowired
-    /**
-    private TeachingMaterialRepository teachingMaterialRepository;
+     @Autowired
+     private TeachingMaterialRepository teachingMaterialRepository;
+
 
     /**
      * 查找所有教学资料
@@ -34,13 +33,13 @@ public class TeachingMaterialService {
      */
     public TeachingMaterial createTeachingMaterial(TeachingMaterial teachingMaterial) {
         return teachingMaterialRepository.save(teachingMaterial);
-    }
+    }    
 
     /**
      * 根据ID查找教学资料
-     * @param id 教学资料ID
+      * @param id 教学资料ID
      * @return 找到的教学资料，如果不存在则返回 null
-     */
+     */    
     public TeachingMaterial getTeachingMaterialById(Long id) {
         Optional<TeachingMaterial> optionalTeachingMaterial = teachingMaterialRepository.findById(id);
         return optionalTeachingMaterial.orElse(null);
@@ -50,17 +49,18 @@ public class TeachingMaterialService {
      * 更新教学资料信息
      * @param teachingMaterial 要更新的教学资料对象
      * @return 更新后的教学资料对象
-     */
+     */    
     public TeachingMaterial updateTeachingMaterial(TeachingMaterial teachingMaterial) {
         return teachingMaterialRepository.save(teachingMaterial);
     }
 
     /**
      * 根据ID删除教学资料
-     * @param id 要删除的教学资料ID
+     * 根据ID删除教学资料
      */
     public void deleteTeachingMaterialById(Long id) {
         teachingMaterialRepository.deleteById(id);
+    
     }
 
     /**
@@ -80,5 +80,4 @@ public class TeachingMaterialService {
     public List<TeachingMaterial> getTeachingMaterialsByTeacherId(Long teacherId) {
         return teachingMaterialRepository.findByTeacherId(teacherId);
     }
-    */
 }
