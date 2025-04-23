@@ -1,6 +1,5 @@
 package com.example.teaching.controller;
 
-import com.example.teaching.service.impl.UserServiceImpl;
 import com.example.teaching.entity.User;
 import com.example.teaching.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,7 +10,6 @@ import org.springframework.http.ResponseEntity;
 import java.util.List;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
-import javax.validation.Valid;
 
 /**
  * UserController 类
@@ -96,7 +94,7 @@ public class UserController {
      */
     @ApiOperation(value = "用户注册", notes = "注册一个新的用户")
     @PostMapping("/register")
-    public ResponseEntity<User> registerUser(@Valid @RequestBody User user) {
+    public ResponseEntity<User> registerUser(@RequestBody User user) {
         User registeredUser = userService.registerUser(user);
         return new ResponseEntity<>(registeredUser, registeredUser != null ? HttpStatus.CREATED : HttpStatus.BAD_REQUEST);
     }
