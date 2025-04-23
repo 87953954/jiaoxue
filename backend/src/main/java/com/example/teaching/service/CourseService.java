@@ -83,12 +83,15 @@ public class CourseService {
      * @return 该学生选修的课程列表
      */
     public List<Course> getCourseByStudentId(Long studentId) {
-        List<Course> courses = courseRepository.findAll();
-        List<Course> studentCourses = courses.stream().filter(course -> course.getStudentIds().contains(studentId)).collect(Collectors.toList());
-        if (studentCourses.isEmpty()) {
-          return new ArrayList<>();
-        }
-        return studentCourses;
+         List<Course> courses = courseRepository.findAll();
+        List<Course> studentCourses = courses.stream()
+                .filter(course -> course.getStudents().stream()
+                        .anyMatch(student -> student.getId().equals(studentId)))
+                .collect(Collectors.toList());
+         if (studentCourses.isEmpty()) {
+            return new ArrayList<>();
+         }
+         return studentCourses;
     }
 
 }
