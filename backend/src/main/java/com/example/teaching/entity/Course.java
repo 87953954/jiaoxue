@@ -71,6 +71,13 @@ public class Course {
 
     private List<User> students;
 
+    public Course(Object o, String testCourse, long l) {
+    }
+
+    public Course() {
+
+    }
+
     /**
      * 获取课程描述。
      * 课程描述不能为空，最大长度为 200 个字符。
