@@ -33,6 +33,7 @@ public class UserController {
      * 获取所有用户
      * @return 用户列表
      */
+    @Operation(summary = "获取所有用户")
     @GetMapping
     public List<User> getAllUsers() {
         return userService.findAll();
@@ -43,6 +44,7 @@ public class UserController {
      * @param user 要创建的用户对象
      * @return 创建成功的用户对象
      */
+    @Operation(summary = "创建用户")
     @PostMapping()
     public ResponseEntity<User> createUser(@RequestBody User user) {
         User createdUser = userService.createUser(user);
@@ -54,6 +56,7 @@ public class UserController {
      * @param id 用户ID
      * @return 找到的用户对象，如果不存在则返回 404 错误
      */
+    @Operation(summary = "根据ID获取用户")
     @GetMapping("/{id}")
     public ResponseEntity<User> getUserById(@PathVariable Long id) {
         User user = userService.getUserById(id);
@@ -68,6 +71,7 @@ public class UserController {
      * @param user 要更新的用户对象
      * @return 更新后的用户对象
      */
+    @Operation(summary = "更新用户")
     @PutMapping
     public ResponseEntity<User> updateUser(@RequestBody User user) {
         User updatedUser = userService.updateUser(user);
@@ -80,6 +84,7 @@ public class UserController {
      * @param id 要删除的用户ID
      * @return 204 No Content 响应
      */
+    @Operation(summary = "根据ID删除用户",description = "根据ID删除用户")
     @DeleteMapping("/{id}")
     public ResponseEntity<Void> deleteUserById(@PathVariable Long id) {
         userService.deleteUserById(id);
@@ -139,6 +144,7 @@ public class UserController {
      * 忘记用户密码
      * @param user 包含用户名和密码的用户对象
      */
+    @Operation(summary = "忘记密码")
     @PutMapping("/forgetPassword")
     public ResponseEntity<User> forgetPassword(@RequestBody User user) {
         User updatedUser = userService.forgetPassword(user.getUsername(),user.getPassword());

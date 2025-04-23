@@ -9,10 +9,10 @@ import java.util.List;
 public interface TeacherRepository extends JpaRepository<Teacher, Long> {
     /**
      * 根据教师姓名查找教师
-     * @param teacherName 教师姓名
+     * @param name 教师姓名
      * @return 教师列表
      */
-    List<Teacher> findByTeacherName(String teacherName);
+    List<Teacher> findByName(String name);
 
     /**
      * 根据邮箱查找教师

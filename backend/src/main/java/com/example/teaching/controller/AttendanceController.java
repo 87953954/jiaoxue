@@ -81,6 +81,7 @@ public class AttendanceController {
      * @param id 要删除的考勤记录ID
      * @return 删除结果
      */
+    @Operation(summary = "根据ID删除考勤记录")
     @DeleteMapping("/{id}")
     public ResponseEntity<Void> deleteAttendanceById(@PathVariable Long id) {
         attendanceService.deleteAttendanceById(id);
@@ -115,6 +116,7 @@ public class AttendanceController {
      * @param studentId 学生ID
      * @return 考勤记录列表
      */
+    @Operation(summary = "根据学生ID获取考勤记录")
     @GetMapping("/byStudent/{studentId}")
     public List<Attendance> getAttendancesByStudentId(@PathVariable Long studentId) {
         return attendanceService.getAttendancesByStudentId(studentId);
@@ -125,6 +127,7 @@ public class AttendanceController {
      * @param courseId 课程ID
      * @return 考勤记录列表
      */
+    @Operation(summary = "根据课程ID获取考勤记录")
     @GetMapping("/byCourse/{courseId}")
     public List<Attendance> getAttendancesByCourseId(@PathVariable Long courseId) {
         return attendanceService.getAttendancesByCourseId(courseId);
