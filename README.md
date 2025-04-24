@@ -121,9 +121,9 @@
 教学资料表（课程ID、文件URL）
 
 六、技术建议
-前端：React/Vue + TailwindCSS，支持移动端适配
+前端：Vue + ant-design，支持移动端适配
 
-后端：Node.js / Django，提供REST API
+后端：java，springboot 提供REST API
 
 数据库：MySQL / PostgreSQL
 
