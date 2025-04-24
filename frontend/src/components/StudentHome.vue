@@ -91,73 +91,56 @@
   </a-layout>
 </template>
 
-
-<script>
-import { defineComponent, reactive} from 'vue';
+<script setup>
+import { reactive } from 'vue';
 import { useRouter } from 'vue-router';
-export default defineComponent( {
-  name: 'StudentHome',
-  setup() {
-    const courseData = reactive([
-      { name: '数学', time: '周一 8:00', location: 'A101', teacher: '张老师' },
-      { name: '英语', time: '周二 10:00', location: 'B202', teacher: '李老师' },
-      { name: '语文', time: '周三 14:00', location: 'C303', teacher: '王老师' },
-    ]);
 
-    const todoData = reactive([
-      { title: '完成数学作业', description: '截止日期：周五' },
-      { title: '准备英语考试', description: '考试时间：下周一' },
-    ]);
-    const announcementData = reactive([
-      { title: '本周三英语考试', date: '2024/03/26' },
+const router = useRouter();
 
-      { title: '明天停课', date: '2024/03/25' },
-      { title: '本周进行英语测试', date: '2024/03/24' },
-    ]);
-     const handleRefresh = () => {
-      console.log('刷新');
-    };
-    return {
-         courseData,
-         todoData,
-         announcementData,
-         handleRefresh
-    };
-  },
-    setup(){
-    const router = useRouter();
-    const goToStudentHome = () => {
-      router.push('/studentHome')
-    };
-    const goToCourse = () =>{
-        router.push("/course")
-    }
-    const goToAttendance = () =>{
-        router.push("/attendance")
-    }
-    const goToAnnouncement = () =>{
-        router.push("/announcement")
-    }
-    const goToTeachingMaterial = () =>{
-        router.push("/teachingMaterial")
-    }
-    const goToTeachingEvaluation = () =>{
-        router.push("/teachingEvaluation")
-    }
-    return{
-        goToStudentHome,
-        goToCourse,
-        goToAttendance,
-        goToAnnouncement,
-        goToTeachingMaterial,
-        goToTeachingEvaluation
-    }
+const courseData = reactive([
+  { name: '数学', time: '周一 8:00', location: 'A101', teacher: '张老师' },
+  { name: '英语', time: '周二 10:00', location: 'B202', teacher: '李老师' },
+  { name: '语文', time: '周三 14:00', location: 'C303', teacher: '王老师' },
+]);
 
+const todoData = reactive([
+  { title: '完成数学作业', description: '截止日期：周五' },
+  { title: '准备英语考试', description: '考试时间：下周一' },
+]);
 
+const announcementData = reactive([
+  { title: '本周三英语考试', date: '2024/03/26' },
+  { title: '明天停课', date: '2024/03/25' },
+  { title: '本周进行英语测试', date: '2024/03/24' },
+]);
 
+const handleRefresh = () => {
+  console.log('刷新');
+};
 
-    }
-});
+const goToStudentHome = () => {
+  router.push('/studentHome');
+};
+
+const goToCourse = () => {
+  router.push('/course');
+};
+
+const goToAttendance = () => {
+  router.push('/attendance');
+};
+
+const goToAnnouncement = () => {
+  router.push('/announcement');
+};
+
+const goToTeachingMaterial = () => {
+  router.push('/teachingMaterial');
+};
+
+const goToTeachingEvaluation = () => {
+  router.push('/teachingEvaluation');
+};
 </script>
 
 <style scoped>

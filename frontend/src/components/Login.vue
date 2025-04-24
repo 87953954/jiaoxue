@@ -1,7 +1,7 @@
 <template>
   <div class="login-container">
-      <a-form
-      @keyup.enter.native="onFinish(formState)"
+    <a-form
+      @keyup.enter="onFinish(formState)"
       ref="formRef"
       :model="formState"
       name="basic"
@@ -14,7 +14,7 @@
         <div class="logo">
           Logo
         </div>
-    >
+      </div>
       <h1 class="login-title">用户登录</h1>
       <a-form-item          
         name="username"
@@ -35,8 +35,8 @@
         />
       </a-form-item>
       <a-form-item>
-          <a-checkbox v-model:checked="formState.remember">记住我</a-checkbox>
-         <a-link @click="goToForgetPassword" style="float: right">
+        <a-checkbox v-model:checked="formState.remember">记住我</a-checkbox>
+        <a-link @click="goToForgetPassword" style="float: right">
           忘记密码
         </a-link>
       </a-form-item>
@@ -45,93 +45,78 @@
           登录
         </a-button>
       </a-form-item>
-      <div class="copyright">© 2024 Teaching Management System. All rights reserved.
+      <div class="copyright">© 2024 Teaching Management System. All rights reserved.</div>
+      <a-form-item>
+        <a-link href="#" class="register-link">立即注册</a-link>
       </a-form-item>
-       <a-form-item>
-      <a-link href="#" class="register-link">立即注册</a-link>
-        </a-form-item>
-         
-
     </a-form>
   </div>
 </template>
 
-<script>
+<script setup>
 import { reactive, ref } from 'vue';
 import { message } from 'ant-design-vue';
 import axios from 'axios';
 import { useRouter } from 'vue-router';
 
-export default {
-  name: 'Login',
-  setup() {
-    const router = useRouter();
-    const formRef = ref();
-    const formState = reactive({
-      username: '',
-      password: '',
-      remember: false,
+const router = useRouter();
+const formRef = ref();
+const formState = reactive({
+  username: '',
+  password: '',
+  remember: false,
+});
+
+// 跳转到忘记密码页面的方法
+const goToForgetPassword = () => {
+  router.push('/forgetPassword');
+};
+
+const goToRegister = () => {
+  router.push('/register');
+};
+
+const onFinish = async (values) => {
+  try {
+    const response = await axios.post('/api/login', {
+      username: values.username,
+      password: values.password,
     });
-    // 跳转到忘记密码页面的方法
-    const goToForgetPassword = () => {
-      router.push('/forgetPassword');
-    };
-    const goToRegister = () => {
-      router.push('/register');
-    };
-    const onFinish = async (values) => {
-        try {
-            const response = await axios.post('/api/login', {
-                username: values.username,
-                password: values.password,
-            });
-            if (response.data.status === 'success') {
-                localStorage.setItem('user', JSON.stringify(response.data.data));
-                message.success('登录成功！');
-                router.push('/studentHome');
-            } else {
-                message.error('用户名或密码错误！');
-            }
-        } catch (error) {
-            console.error('登录失败:', error);
-            message.error('登录失败，请检查网络或稍后重试！');
-        }
-      // 在这里可以进行登录逻辑的处理，例如发送登录请求
-    };
+    if (response.data.status === 'success') {
+      localStorage.setItem('user', JSON.stringify(response.data.data));
+      message.success('登录成功！');
+      router.push('/studentHome');
+    } else {
+      message.error('用户名或密码错误！');
+    }
+  } catch (error) {
+    console.error('登录失败:', error);
+    message.error('登录失败，请检查网络或稍后重试！');
+  }
+};
 
-    const onFinishFailed = (errorInfo) => {
-      console.log('Failed:', errorInfo);
-    };
-
-    return {
-      formRef,
-      formState,
-      onFinish,
-      onFinishFailed,
-      goToForgetPassword,
-      goToRegister
-    };
-  },
+const onFinishFailed = (errorInfo) => {
+  console.log('Failed:', errorInfo);
 };
 </script>
 
-<style >
+<style scoped>
 .login-container {
   display: flex;
   justify-content: center;
   align-items: center;
   height: 100vh;
   background-color: #f0f2f5;
-  font-family: Arial, sans-serif; /* 设置全局字体 */
-  color: #333; /* 设置全局文本颜色 */
+  font-family: Arial, sans-serif;
+  color: #333;
 }
 
 .login-form {
-  width: 350px; /* 调整表单宽度 */
-  padding: 40px; /* 调整内边距 */
+  width: 350px;
+  padding: 40px;
   background-color: #fff;
-  border-radius: 8px; /* 圆角 */
-  box-shadow: 0 2px 12px 0 rgba(0, 0, 0, 0.1); /* 阴影 */
+  border-radius: 8px;
+  box-shadow: 0 2px 12px 0 rgba(0, 0, 0, 0.1);
 }
 
 .logo {
@@ -142,26 +127,30 @@ export default {
 }
 
 .ant-input, .ant-input-password {
-  border-color: #d9d9d9; /* 输入框边框颜色 */
-  font-size: 14px; /* 输入框字体大小 */
-  padding: 10px; /* 输入框内边距 */
-  height: 40px; /* 输入框高度 */
+  border-color: #d9d9d9;
+  font-size: 14px;
+  padding: 10px;
+  height: 40px;
 }
-.ant-btn-primary{
+
+.ant-btn-primary {
   background-color: #1890ff;
   border-color: #1890ff;
   font-size: 14px;
 }
-.ant-btn-primary:hover{
-    background-color: #40a9ff;
-    border-color: #40a9ff;
+
+.ant-btn-primary:hover {
+  background-color: #40a9ff;
+  border-color: #40a9ff;
 }
-.register-link:hover{
-    color: #40a9ff;
+
+.register-link:hover {
+  color: #40a9ff;
 }
-.logo-container{
-    text-align: center;
-    margin-bottom: 20px;
+
+.logo-container {
+  text-align: center;
+  margin-bottom: 20px;
 }
 
 .login-title {
@@ -171,19 +160,20 @@ export default {
 
 .login-button {
   width: 100%;
-    height: 40px;
+  height: 40px;
 }
-.copyright{
-    text-align: center;
-    font-size: 12px;
-    color: #999;
+
+.copyright {
+  text-align: center;
+  font-size: 12px;
+  color: #999;
 }
 
 /* 移动端适配 */
 @media (max-width: 576px) {
   .login-form {
-    width: 90%; /* 在小屏幕上宽度为 90% */
-    padding: 20px; /* 调整内边距 */
+    width: 90%;
+    padding: 20px;
   }
 }
 </style>

@@ -1,35 +1,32 @@
 <template>
   <div class="home">
     <h1>教学管理系统</h1>
-    <el-button type="primary" @click="goToTeachers">教师列表</el-button>
-    <el-button type="primary" @click="goToStudents">学生列表</el-button>
-    <el-button type="primary" @click="goToCourses">课程列表</el-button>
-    <el-button type="primary" @click="goToAnnouncements">公告列表</el-button>
+    <a-button type="primary" @click="goToTeachers">教师列表</a-button>
+    <a-button type="primary" @click="goToStudents">学生列表</a-button>
+    <a-button type="primary" @click="goToCourses">课程列表</a-button>
+    <a-button type="primary" @click="goToAnnouncements">公告列表</a-button>
   </div>
 </template>
 
-<script>
-import { ElButton } from 'element-plus';
+<script setup>
+import { useRouter } from 'vue-router';
 
-export default {
-  name: 'Home',
-  components: {
-    ElButton
-  },
-  methods: {
-    goToTeachers() {
-      this.$router.push('/teachers');
-    },
-    goToStudents() {
-      this.$router.push('/students');
-    },
-    goToCourses() {
-      this.$router.push('/courses');
-    },
-    goToAnnouncements() {
-      this.$router.push('/announcements');
-    }
-  }
+const router = useRouter();
+
+const goToTeachers = () => {
+  router.push('/teachers');
+};
+
+const goToStudents = () => {
+  router.push('/students');
+};
+
+const goToCourses = () => {
+  router.push('/courses');
+};
+
+const goToAnnouncements = () => {
+  router.push('/announcements');
 };
 </script>
 
@@ -46,7 +43,7 @@ export default {
   margin-bottom: 20px;
 }
 
-.el-button {
+.ant-btn {
   margin: 10px;
 }
 </style>
