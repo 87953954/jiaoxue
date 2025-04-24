@@ -2,9 +2,12 @@ package com.example.teaching.entity;
 
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
-
-
+import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
+import lombok.NoArgsConstructor;
+
+import java.time.LocalDateTime;
 
 /**
  * Payment 实体类
@@ -12,6 +15,9 @@ import lombok.Data;
  */
 @Data
 @Entity
+@Builder
+@NoArgsConstructor
+@AllArgsConstructor
 @Table(name = "payment")
 public class Payment {
     /**
@@ -41,16 +47,28 @@ public class Payment {
     @NotNull(message = "Amount is required")
     @Column(name = "amount")
     private Double amount;
+
     /**
      * 缴费截图路径
      */
     @Column(name = "payment_screenshot")
     private String paymentScreenshot;
+
     /**
      * 缴费状态
      */
-    @Column(name = "status")
-    private String status;
+    @Column(name = "payment_status")
+    private String paymentStatus;
+
+    /**
+     * 审核人
+     */
     @Column(name = "auditor")
     private Long auditor;
+
+    /**
+     * 缴费时间
+     */
+    @Column(name = "payment_time")
+    private LocalDateTime paymentTime;
 }

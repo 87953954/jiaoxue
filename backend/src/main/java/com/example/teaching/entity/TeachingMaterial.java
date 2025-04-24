@@ -54,5 +54,24 @@ public class TeachingMaterial {
      */
     private String fileUrl;
 
-    
+    private String materialType;  // 教学资料类型，如：文档、视频、图片等
+
+    public TeachingMaterial() {
+    }
+
+    public String getFileUrl() {
+        return fileUrl;
+    }
+
+    public void setFileUrl(String fileUrl) {
+        this.fileUrl = fileUrl;
+    }
+
+    public String getMaterialType() {
+        return materialType;
+    }
+
+    public void setMaterialType(String materialType) {
+        this.materialType = materialType;
+    }
 }

@@ -8,6 +8,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
 
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 
 @SpringBootApplication
 public class TeachingManagementApplication {
@@ -18,25 +19,53 @@ public class TeachingManagementApplication {
 
     @Bean
     public CommandLineRunner dataLoader(TeacherRepository teacherRepository,
-        StudentRepository studentRepository,
-        CourseRepository courseRepository,
-        EnrollmentRepository enrollmentRepository,
-        AnnouncementRepository announcementRepository) {
+                                      StudentRepository studentRepository,
+                                      CourseRepository courseRepository,
+                                      EnrollmentRepository enrollmentRepository,
+                                      AnnouncementRepository announcementRepository) {
         return args -> {
-
             // Add one test teacher
-            teacherRepository.save(new Teacher(null, "Test Teacher", "T001"));
+            Teacher teacher = Teacher.builder()
+                    .name("Test Teacher")
+                    .teacherNo("T001")
+                    .build();
+            teacherRepository.save(teacher);
 
             // Add one test student
-            studentRepository.save(new Student(null, "Test Student", "S001", "Class A"));
+            Student student = Student.builder()
+                    .name("Test Student")
+                    .studentNo("S001")
+                    .classNo("Class A")
+                    .build();
+            studentRepository.save(student);
 
             // Add one test course
-            courseRepository.save(new Course(null, "Test Course", 1L));
+            Course course = Course.builder()
+                    .name("Test Course")
+                    .description("This is a test course")
+                    .classHour(32)
+                    .location("Room 101")
+                    .students(new ArrayList<>())
+                    .build();
+            courseRepository.save(course);
 
-            // Add some test enrollments
-            enrollmentRepository.save(new Enrollment(null, 1L, 1L, LocalDateTime.now().toString(), "Room 101"));
-            enrollmentRepository.save(new Enrollment(null, 2L, 2L, LocalDateTime.now().toString(), "Room 102"));
-            announcementRepository.save(new Announcement(null,"this is a test", LocalDateTime.now(),"Class A"));
+            // Add test enrollment
+            Enrollment enrollment = Enrollment.builder()
+                    .courseId(course.getId())
+                    .studentId(student.getId())
+                    .enrollmentTime(LocalDateTime.now())
+                    .address("Room 101")
+                    .build();
+            enrollmentRepository.save(enrollment);
+
+            // Add one test announcement
+            Announcement announcement = Announcement.builder()
+                    .title("Test Announcement")
+                    .content("This is a test announcement")
+                    .publishTime(LocalDateTime.now())
+                    .classNo("Class A")
+                    .build();
+            announcementRepository.save(announcement);
         };
     }
 }

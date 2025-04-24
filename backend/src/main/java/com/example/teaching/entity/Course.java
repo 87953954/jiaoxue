@@ -4,7 +4,10 @@ import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import java.util.List;
 
@@ -14,6 +17,9 @@ import java.util.List;
  */
 @Data
 @Entity
+@Builder
+@NoArgsConstructor
+@AllArgsConstructor
 @Table(name = "course")
 public class Course {
     /**
@@ -31,8 +37,10 @@ public class Course {
     private String name;
 
     /**
-     * 课程描述。
+     * 课程描述，不能为空，最大长度为 200 个字符。
      */
+    @NotBlank(message = "Description is required")
+    @Size(max = 200, message = "Description must be up to 200 characters")
     private String description;
 
     /**
@@ -68,15 +76,7 @@ public class Course {
             joinColumns = @JoinColumn(name = "course_id"),
             inverseJoinColumns = @JoinColumn(name = "student_id")
     )
-
     private List<User> students;
-
-    public Course(Object o, String testCourse, long l) {
-    }
-
-    public Course() {
-
-    }
 
     /**
      * 获取课程描述。
