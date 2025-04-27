@@ -14,7 +14,7 @@
         <div class="logo">
           Logo
         </div>
-    >
+      </div>
       <h1 class="login-title">用户登录</h1>
       <a-form-item          
         name="username"
@@ -41,15 +41,15 @@
         </a-link>
       </a-form-item>
       <a-form-item>
-        <a-button type="primary" html-type="submit" class="login-button">
-          登录
-        </a-button>
-      </a-form-item>
-      <div class="copyright">© 2024 Teaching Management System. All rights reserved.
-      </a-form-item>
-       <a-form-item>
-      <a-link href="#" class="register-link">立即注册</a-link>
+          <a-button type="primary" html-type="submit" class="login-button">
+            登录
+          </a-button>
         </a-form-item>
+      <div class="copyright">© 2024 Teaching Management System. All rights reserved.
+      </div>
+       <a-form-item>
+        <a-link href="#" class="register-link" @click="goToRegister">立即注册</a-link>
+      </a-form-item>
          
 
     </a-form>

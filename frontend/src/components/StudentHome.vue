@@ -1,12 +1,12 @@
 <template>
   <a-layout class="student-home">
     <a-layout-header class="header">
-      <div class="logo" @click="goToStudentHome">Logo</div>
+      <div class="logo" >Logo</div>
       <div class="user-info">
         <a-avatar size="large" />
         <span class="user-name">学生姓名</span>
       </div>
-      <div class="header-right">
+    <!--  <div class="header-right">
       <a-button type="primary"  @click="handleRefresh" class="refresh-button">刷新</a-button>
       </div>
     </a-layout-header>
@@ -16,13 +16,13 @@
           <a-card title="我的课程" :bordered="false" class="card">
             <a-list :data-source="courseData" >
               <template #renderItem="{ item }">
-                <a-list-item>
+                <a-list-item >
                   <a-list-item-meta>
                     <template #title>
                       {{ item.name }}
                     </template>
                     <template #description>
-                      {{ item.time }} - {{ item.location }} - {{ item.teacher }}
+                      {{ item.time }} 
                     </template>
                   </a-list-item-meta>
                 </a-list-item>
@@ -31,12 +31,7 @@
           </a-card>
         </a-col>
         <a-col :span="12">
-          <a-card title="今日考勤" :bordered="false" class="card" @click="goToAttendance">
-          <div class="attendance-info">
-            <span class="attendance-label">考勤状态:</span>
-            <span class="attendance-status">已签到</span>
-          </div>
-          </a-card>
+          <a-card title="今日考勤" :bordered="false" class="card" ></a-card>
         </a-col>
           
 
@@ -44,12 +39,7 @@
           <a-card title="待办事项" :bordered="false" class="card">
             <a-list :data-source="todoData">
               <template #renderItem="{ item }">
-                <a-list-item>
-                  <a-list-item-meta>
-                    <template #title>
-                      {{ item.title }}
-                    </template>
-                    <template #description>
+                <a-list-item><a-list-item-meta> <template #title> {{ item.title }}</template> <template #description>
                       {{ item.description }}
                     </template>
                   </a-list-item-meta>
@@ -60,13 +50,9 @@
         </a-col>
         <a-col :span="12">
           <a-card title="通知公告" :bordered="false" class="card" @click="goToAnnouncement">
-            <a-list :data-source="announcementData">
-              <template #renderItem="{ item }">
-                <a-list-item>
-                  <a-list-item-meta>
-                    <template #title>
-                      {{ item.title }}
-                    </template>
+            <a-list :data-source="announcementData"><template #renderItem="{ item }"> <a-list-item> <a-list-item-meta> <template #title>
+                      {{ item.title }}</template>
+                    
                     <template #description>
                      {{item.date}}
                     </template>
@@ -78,12 +64,12 @@
         </a-col>
          <a-col :span="12">
           <a-card title="教学资料" :bordered="false" class="card" @click="goToTeachingMaterial">
-            <a-typography-paragraph>最近更新：暂无</a-typography-paragraph>
+          
           </a-card>
         </a-col>
         <a-col :span="12">
            <a-card title="教学评价" :bordered="false" class="card" @click="goToTeachingEvaluation">
-               <a-typography-paragraph>当前没有可以评价的课程</a-typography-paragraph>
+              
           </a-card>
         </a-col>
       </a-row>
@@ -94,63 +80,26 @@
 
 <script>
 import { defineComponent, reactive} from 'vue';
-import { useRouter } from 'vue-router';
+
 export default defineComponent( {
   name: 'StudentHome',
   setup() {
     const courseData = reactive([
-      { name: '数学', time: '周一 8:00', location: 'A101', teacher: '张老师' },
-      { name: '英语', time: '周二 10:00', location: 'B202', teacher: '李老师' },
-      { name: '语文', time: '周三 14:00', location: 'C303', teacher: '王老师' },
+      { name: '数学', time: '周一 8:00'},
+      { name: '英语', time: '周二 10:00' },
+      { name: '语文', time: '周三 14:00' },
     ]);
 
     const todoData = reactive([
       { title: '完成数学作业', description: '截止日期：周五' },
       { title: '准备英语考试', description: '考试时间：下周一' },
     ]);
-    const announcementData = reactive([
-      { title: '本周三英语考试', date: '2024/03/26' },
-
-      { title: '明天停课', date: '2024/03/25' },
-      { title: '本周进行英语测试', date: '2024/03/24' },
-    ]);
-     const handleRefresh = () => {
-      console.log('刷新');
-    };
+    const announcementData = reactive([{ title: '本周三英语考试', date: '2024/03/26' }, { title: '明天停课', date: '2024/03/25' }, { title: '本周进行英语测试', date: '2024/03/24' },]);
+  
     return {
          courseData,
          todoData,
-         announcementData,
-         handleRefresh
-    };
-  },
-    setup(){
-    const router = useRouter();
-    const goToStudentHome = () => {
-      router.push('/studentHome')
-    };
-    const goToCourse = () =>{
-        router.push("/course")
-    }
-    const goToAttendance = () =>{
-        router.push("/attendance")
-    }
-    const goToAnnouncement = () =>{
-        router.push("/announcement")
-    }
-    const goToTeachingMaterial = () =>{
-        router.push("/teachingMaterial")
-    }
-    const goToTeachingEvaluation = () =>{
-        router.push("/teachingEvaluation")
-    }
-    return{
-        goToStudentHome,
-        goToCourse,
-        goToAttendance,
-        goToAnnouncement,
-        goToTeachingMaterial,
-        goToTeachingEvaluation
+         announcementData
     }
 
 
@@ -162,10 +111,7 @@ export default defineComponent( {
 
 <style scoped>
 .student-home {
-  min-height: 100vh;
-}
-
-.header {
+   min-height: 100vh;
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -174,56 +120,28 @@ export default defineComponent( {
   box-shadow: 0 2px 8px #f0f1f2;
     display: flex;
     align-items: center;
-    justify-content: space-between;
+    justify-content: space-between; 
 }
-
 .logo {
   font-size: 20px;
   font-weight: bold;
   color: #1890ff;
+
 }
+
 .user-info {
     display: flex;
   align-items: center;
     margin-right: 20px;
 }
-
 .user-name {
-  margin-left: 10px;
-    color: #333;
-
+    margin-left: 10px;
+    color: #333; 
 }
 .content {
   padding: 24px;
   background-color: #f0f2f5;
 }
-.card{
-    height: 280px;
-}
-.attendance-info {
-    display: flex;
-    align-items: center;
-}
-.attendance-label {
-    font-weight: bold;
-    color: #333;
-}
-.attendance-status {
-    margin-left: 10px;
-    color: #52c41a;
-}
-.refresh-button {
- margin-right: 0px;
-}
-.header-right{
-  display: flex;
-    align-items: center;
+.card{ height: 280px;}
 
-}
-.header-right a-button{
-   margin-right: 20px;
-}
-.refresh-button {
- margin-right: 20px;
-}
 </style>

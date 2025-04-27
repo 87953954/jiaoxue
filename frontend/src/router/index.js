@@ -1,32 +1,36 @@
 import { createRouter, createWebHistory } from 'vue-router';
-import Home from '../views/Home.vue';
+
 import Login from '../components/Login.vue';
-import StudentHome from '../components/StudentHome.vue';
+
 import ForgetPassword from '../components/ForgetPassword.vue';
 import Register from '../components/Register.vue';
 import CoursePage from '../components/CoursePage.vue';
 import AttendancePage from '../components/AttendancePage.vue';
 import TodoPage from '../components/TodoPage.vue';
 import AnnouncementPage from '../components/AnnouncementPage.vue';
+import StudentLayout from '../layouts/StudentLayout.vue';
+
 import TeachingMaterialPage from '../components/TeachingMaterialPage.vue';
 import TeachingEvaluationPage from '../components/TeachingEvaluationPage.vue';
 import UserList from '../components/UserList.vue'
+import StudentHome from '../views/StudentHome.vue';
+import StudentCourse from '../views/StudentCourse.vue';
+import StudentProfile from '../views/StudentProfile.vue';
 
 const routes = [
   {
     path: '/',
-    name: 'Home',
-    component: Home,
+    redirect: '/studentHome',
   },
   {
     path: '/login',
     name: 'Login',
     component: Login,
   },
+  { path: '/studentHome', component: StudentHome },
+  { path: '/studentCourse', component: StudentCourse },
+  { path: '/studentProfile', component: StudentProfile },
   {
-    path: '/studentHome',
-    name: 'StudentHome',
-    component: StudentHome,
   },
     {
         path: '/forgetPassword',

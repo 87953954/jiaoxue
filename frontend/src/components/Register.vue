@@ -1,5 +1,5 @@
 <template>
-  <div class="register">
+  <div class="register-container">
     注册页面
   </div>
 </template>
@@ -10,9 +10,13 @@ export default {
 };
 </script>
 
+
 <style scoped>
-.register {
-    text-align: center;
+.register-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
 }
 </style>
 </script>
