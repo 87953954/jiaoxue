@@ -4,10 +4,8 @@
   </div>
 </template>
 
-<script>
-export default {
-  name: 'Register',
-};
+<script setup>
+// 组件逻辑
 </script>
 
 
@@ -19,4 +17,3 @@ export default {
   height: 100vh;
 }
 </style>
-</script>

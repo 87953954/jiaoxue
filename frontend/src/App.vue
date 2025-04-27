@@ -1,23 +1,23 @@
 <template>
   <div id="app">
     <header>
-      <el-menu mode="horizontal">
-        <el-menu-item index="/">
+      <a-menu mode="horizontal">
+        <a-menu-item key="/">
           <router-link to="/">Home</router-link>
-        </el-menu-item>
-        <el-menu-item index="/teachers">
+        </a-menu-item>
+        <a-menu-item key="/teachers">
           <router-link to="/teachers">Teacher</router-link>
-        </el-menu-item>
-        <el-menu-item index="/students">
+        </a-menu-item>
+        <a-menu-item key="/students">
           <router-link to="/students">Student</router-link>
-        </el-menu-item>
-        <el-menu-item index="/courses">
+        </a-menu-item>
+        <a-menu-item key="/courses">
           <router-link to="/courses">Course</router-link>
-        </el-menu-item>
-        <el-menu-item index="/announcements">
+        </a-menu-item>
+        <a-menu-item key="/announcements">
           <router-link to="/announcements">Announcement</router-link>
-        </el-menu-item>
-      </el-menu>
+        </a-menu-item>
+      </a-menu>
     </header>
     <main>
       <router-view/>
@@ -47,7 +47,7 @@ footer {
   margin-top: 20px;
 }
 
-.el-menu-item a{
+.ant-menu-item a {
   text-decoration: none;
 }
 </style>
